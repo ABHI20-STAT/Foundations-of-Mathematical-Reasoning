@@ -1,0 +1,363 @@
+# 🧠 Week 1 – Logic  
+### Based on *Robert R. Stoll, Set Theory and Logic* (Chapter 4)
+
+> **Module Context:**  
+> This week introduces the mathematical foundations of *logic* — the art of reasoning with precision.  
+> We explore both the **Statement Calculus (Propositional Logic)** and the **Predicate Calculus (First-Order Logic)**, learning how symbols, connectives, and truth tables formalize mathematical thought.
+
+---
+
+## 📘 Chapter Overview
+
+Chapter 4 of Stoll’s *Set Theory and Logic* systematically develops logic as a rigorous calculus.  
+It comprises two principal parts:
+
+| Section | Topic |
+|:--:|:--|
+| 1–5 | **The Statement Calculus** (propositional logic) |
+| 6–9 | **The Predicate Calculus** (first-order logic) |
+
+Together they build the bridge from *language → logic → proof*.
+
+---
+
+## ⚙️ 1. The Statement Calculus — Sentential Connectives
+
+In logic, a **statement (proposition)** is a declarative sentence that is *true or false*, never both.
+
+Common **sentential connectives**:
+
+| Symbol | Name | Example | Meaning |
+|:--:|:--:|:--|:--|
+| ¬ p | Negation | “It is not raining.” | True when *p* is false |
+| p ∧ q | Conjunction | “p and q” | True only if both true |
+| p ∨ q | Disjunction | “p or q (inclusive)” | True if at least one true |
+| p → q | Implication | “If p then q” | False only if p T and q F |
+| p ↔ q | Biconditional | “p if and only if q” | True when both share truth value |
+
+### 🌐 Logical Syntax & Semantics
+- **Syntax:** how formulas are built using connectives and variables.  
+- **Semantics:** how truth values are assigned.
+
+A *well-formed formula (wff)* is a valid syntactic expression.  
+Example: `((p ∧ q) → ¬r)` is a wff; `p ∧ ∨ q` is not.
+
+---
+
+## 🧩 2. The Statement Calculus — Truth Tables
+
+Truth tables show how complex propositions depend on their atomic parts.
+
+Example – Truth table for implication `p → q`:
+
+| p | q | p → q |
+|:-:|:-:|:-:|
+| T | T | T |
+| T | F | F |
+| F | T | T |
+| F | F | T |
+
+> **Insight:** Only when *p* is true and *q* is false does “if p then q” fail.
+
+### 🧠 Example:  
+To test the tautology of `¬(p ∧ q) ↔ (¬p ∨ ¬q)` (De Morgan’s law), expand a truth table and verify all rows yield *T*.
+
+---
+
+## 🧠 3. The Statement Calculus — Validity
+
+A **valid formula** (tautology) is always true under any assignment of truth values.
+
+- Example: `(p → (q → p))`  
+  is valid because regardless of *p* and *q*, the implication holds.
+
+### Distinctions
+| Concept | Description |
+|:--|:--|
+| **Tautology** | Always true |
+| **Contradiction** | Always false |
+| **Contingent** | Sometimes true, sometimes false |
+
+### Proving Validity
+- **Truth-table method** (mechanical)
+- **Algebraic simplification** (using equivalences)
+- **Natural deduction** (systematic derivations)
+
+---
+
+## 🔄 4. The Statement Calculus — Consequence
+
+Let `Γ ⊨ φ` mean: *φ is a logical consequence of* Γ.  
+That is, whenever all formulas in Γ are true, φ is true.
+
+Example:
+> From `{p → q, p}` we can deduce `q`.  
+> (Modus Ponens)
+
+This relation between premises and conclusions defines **logical entailment** — the backbone of proofs.
+
+---
+
+## 🧮 5. The Statement Calculus — Applications
+
+Logical systems have broad applications:
+
+- **Proof verification:** detect invalid arguments.  
+- **Circuit design:** logical connectives → digital gates.  
+- **Algorithm correctness:** pre/post-conditions as implications.  
+- **Artificial intelligence:** reasoning systems and propositional inference engines.
+
+### Example:  
+| Logical Form | Circuit Equivalent |
+|:--|:--|
+| p ∧ q | AND gate |
+| p ∨ q | OR gate |
+| ¬p | NOT gate |
+
+---
+
+## 🧭 6. The Predicate Calculus — Symbolizing Everyday Language
+
+Propositional logic handles simple statements; **predicate logic** handles internal structure.
+
+### Example Translation
+
+| English | Predicate Logic |
+|:--|:--|
+| “All humans are mortal.” | ∀x (H(x) → M(x)) |
+| “Some students are mathematicians.” | ∃x (S(x) ∧ M(x)) |
+| “No dog is a cat.” | ∀x (D(x) → ¬C(x)) |
+
+### Notes
+- **Predicate:** property or relation (e.g., M(x) = “x is mortal”).  
+- **Quantifiers:**  
+  - ∀ (“for all”) — universal quantifier  
+  - ∃ (“there exists”) — existential quantifier
+
+---
+
+## 🔤 7. The Predicate Calculus — A Formulation
+
+Formulas are recursively defined:
+
+1. Every atomic formula `P(x₁,…,xₙ)` is a wff.  
+2. If φ and ψ are wffs, so are ¬φ, (φ ∧ ψ), (φ ∨ ψ), (φ → ψ).  
+3. If φ is a wff and x a variable, then ∀x φ and ∃x φ are wffs.
+
+Logical structure enables substitution, quantifier movement, and bound/free variable distinction.
+
+---
+
+## ✅ 8. The Predicate Calculus — Validity
+
+A formula φ is **valid** if it’s true in every interpretation (model).  
+
+Example:  
+`∀x (P(x) → P(x))` is universally valid.
+
+A formula is **satisfiable** if true in *some* model, and **unsatisfiable** otherwise.
+
+| Concept | Symbol | Meaning |
+|:--|:--|:--|
+| Validity | ⊨ φ | φ is true in all models |
+| Satisfiability | ⊭ ¬φ | some model makes φ true |
+| Contradiction | ⊨ ¬φ | always false |
+
+---
+
+## 🔗 9. The Predicate Calculus — Consequence
+
+If every model of Γ is also a model of φ, then Γ ⊨ φ.  
+This mirrors the semantic notion of consequence from propositional logic.
+
+### Example
+Let Γ = { ∀x (P(x) → Q(x)), P(a) }.  
+Then Γ ⊨ Q(a).  
+Reason: by universal instantiation and modus ponens.
+
+---
+
+## 🧭 Conceptual Map
+
+```mermaid
+graph TD
+A[Statements] --> B[Connectives]
+B --> C[Truth Tables]
+C --> D[Validity]
+D --> E[Consequence]
+E --> F[Predicate Logic]
+F --> G[Quantifiers]
+G --> H[Models & Validity]
+H --> I[Applications]
+
+---
+
+## 🧩*The Predicate Calculus*
+
+### 6. The Predicate Calculus — *Symbolizing Everyday Language*
+
+The **Predicate Calculus** extends the **Statement Calculus** by introducing *predicates*, *variables*, and *quantifiers*, allowing us to formalize general statements about objects.
+
+#### 🔍 Motivation
+While the **Statement Calculus** can represent entire propositions (e.g., *“It is raining”*), it cannot handle statements like:
+> “Every student loves mathematics.”
+
+Here, the logical structure involves:
+- A **variable** (`x`) representing individuals.
+- A **predicate** (`L(x)`) meaning “x loves mathematics.”
+- A **quantifier** (∀) expressing generality.
+
+#### 🧠 Translating Natural Language to Symbolic Logic
+
+| English Statement | Symbolic Form | Interpretation |
+|-------------------|---------------|----------------|
+| Every student loves mathematics. | ∀x S(x) → L(x) | “For all x, if x is a student, then x loves mathematics.” |
+| Some students are mathematicians. | ∃x (S(x) ∧ M(x)) | “There exists at least one x who is a student and a mathematician.” |
+| No students dislike math. | ∀x (S(x) → ¬D(x)) | “For every x, if x is a student, then x does not dislike math.” |
+
+#### 💡 Common Quantifiers
+| Symbol | Name | Meaning |
+|:--:|:--:|:--|
+| ∀ | Universal quantifier | “For all” |
+| ∃ | Existential quantifier | “There exists” |
+
+#### ⚠️ Common Pitfalls
+- Confusing ∀x ∃y with ∃y ∀x (order matters!).
+- Forgetting to restrict the **domain of discourse** (the set of objects considered).
+- Misusing **negation** with quantifiers:  
+  > ¬∀x P(x) ≡ ∃x ¬P(x), and ¬∃x P(x) ≡ ∀x ¬P(x)
+
+---
+
+### 7. The Predicate Calculus — *A Formal System*
+
+We now build a **formal logical system** for predicate reasoning.
+
+#### 🧩 Key Components
+1. **Symbols:**
+   - Logical connectives: ¬, ∧, ∨, →, ↔
+   - Quantifiers: ∀, ∃
+   - Variables: x, y, z, …
+   - Predicates: P(x), Q(x, y), …
+   - Constants: a, b, c (represent specific individuals)
+   - Parentheses: ( )
+
+2. **Formation Rules**
+   - If *t₁, t₂,…* are terms, then *P(t₁, t₂,…)* is an atomic formula.
+   - If *φ* and *ψ* are formulas, then so are:
+     - ¬φ, (φ ∧ ψ), (φ ∨ ψ), (φ → ψ), (φ ↔ ψ)
+   - If *φ* is a formula and *x* a variable, then ∀x φ and ∃x φ are formulas.
+
+3. **Free and Bound Variables**
+   - In ∀x P(x), the variable x is *bound*.
+   - In P(x) → Q(y), x and y are *free*.
+   - Sentences with **no free variables** are **closed formulas** — they express complete statements.
+
+---
+
+### 8. The Predicate Calculus — *Validity*
+
+Predicate logic extends the notion of **truth** to statements involving quantifiers.
+
+#### ✅ Interpretations
+An **interpretation** consists of:
+- A *domain* D (nonempty set of individuals),
+- Meanings assigned to *constants* and *predicates*.
+
+For example:
+- D = { 1, 2, 3 }
+- P(x): “x is even”  
+Then:  
+- ∀x P(x) → False (not every number is even)  
+- ∃x P(x) → True (2 is even)
+
+#### 🧩 Validity Definition
+A formula φ is **valid** if it is true under every interpretation and every assignment of variables.
+
+> Example: ∀x (P(x) → P(x)) is valid.
+
+#### 🔬 Semantic Entailment
+We write `Γ ⊨ φ` if φ is true under all interpretations in which every member of Γ is true.
+
+---
+
+### 9. The Predicate Calculus — *Consequence*
+
+Logical **consequence** captures *derivability*: when a statement logically follows from premises.
+
+#### 🧩 Formal Definition
+A statement φ is a **consequence** of a set of statements Γ (written Γ ⊢ φ) if there exists a proof of φ from Γ using inference rules.
+
+#### 🚀 Common Inference Rules
+| Rule | Schema | Example |
+|------|---------|----------|
+| Universal Instantiation | ∀x P(x) → P(a) | If all humans are mortal, Socrates is mortal. |
+| Existential Generalization | P(a) → ∃x P(x) | If Socrates is mortal, then there exists someone mortal. |
+| Universal Generalization | If P(a) holds for arbitrary a, infer ∀x P(x) | Prove general case. |
+
+#### ⚖️ Semantic vs. Syntactic Consequence
+| Type | Symbol | Description |
+|:--|:--|:--|
+| Semantic consequence | `Γ ⊨ φ` | φ is true in all models of Γ |
+| Syntactic consequence | `Γ ⊢ φ` | φ is provable from Γ using rules |
+
+By **Gödel’s Completeness Theorem**:  
+> If Γ ⊨ φ then Γ ⊢ φ.  
+> (Every semantically valid statement is provable syntactically.)
+
+---
+
+### 📚 Summary Table
+
+| Section | Focus | Key Concepts |
+|:--:|:--|:--|
+| 6 | Symbolizing Everyday Language | Translating English to logic; quantifiers; predicates |
+| 7 | A Formulation | Syntax, terms, formulas, variables |
+| 8 | Validity | Interpretations, truth under all domains |
+| 9 | Consequence | Derivability, inference, completeness |
+
+---
+
+### 🧭 Suggested Exercises
+1. Symbolize and evaluate:
+   - “Some integers are even.”
+   - “Every rational number is real.”
+   - “No real number is imaginary.”
+2. Construct truth interpretations for:
+   - ∀x (P(x) → Q(x))
+   - ∃x (P(x) ∧ ¬Q(x))
+3. Prove or disprove:
+   - ∀x P(x) → ∃x P(x)
+   - ∃x P(x) → ∀x P(x)
+4. **Build a truth table** for  
+   `¬(p ∨ q) ⇔ (¬p ∧ ¬q)`  
+   and verify it’s a **tautology**.
+
+5. **Translate into predicate logic:**
+   > “Every even integer is the sum of two primes.”
+
+6. **Prove:** from  
+   `∀x (P(x) → Q(x))` and `∃x P(x)`,  
+   infer `∃x Q(x)`.
+
+7. **Find whether**  
+   `(∃x ¬P(x)) → ¬(∀x P(x))`  
+   is **valid**.
+
+8. **Write a short paragraph** on how *symbolic logic* enhances clarity in mathematical proofs.
+
+---
+### 🧩 Visualization: Predicate Structure
+
+```mermaid
+graph TD
+A["Predicate Calculus"] --> B["Predicates (P(x), Q(x,y))"]
+A --> C["Quantifiers (∀, ∃)"]
+A --> D["Validity & Consequence"]
+B --> E["Translation from Natural Language"]
+D --> F["Proof Theory vs Model Theory"]
+
+📚 References
+
+- Primary: Robert R. Stoll, Set Theory and Logic, Chapter 4.
+- Recommended: Daniel J. Velleman, How to Prove It: A Structured Approach Susanna Epp, Discrete Mathematics with Applications Elliott Mendelson, Introduction to Mathematical Logic
